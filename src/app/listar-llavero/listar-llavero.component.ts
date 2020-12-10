@@ -54,7 +54,7 @@ export class ListarLlaveroComponent implements OnInit {
   }
   // Method to delete student object
   deleteStudent(student) {
-    if (window.confirm('Are sure you want to delete this student ?')) { // Asking from user before Deleting student data.
+    if (window.confirm('¿ Seguro que desea eliminar el llavero ?')) { // Asking from user before Deleting student data.
       this.crudApi.DeleteStudent(student.$key) // Using Delete student API to delete student.
       this.toastr.success(student.firstName + ' successfully deleted!'); // Alert message will show up when student successfully deleted.
     }

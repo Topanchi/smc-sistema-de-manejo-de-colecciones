@@ -13,7 +13,7 @@
     <div class="no-data text-center" *ngIf="noData">
       
       <p class="nodata-msg">No existen llaveros registrados aún!</p>
-      <a routerLink="/register-student" class="btn btn-success">
+      <a routerLink="/agregar-llavero" class="btn btn-success">
         <i class="fas fa-plus custom-fa-plus"></i>
         Añadir llavero
       </a>
@@ -27,13 +27,13 @@
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Material</th>
-            <th class="text-center" scope="col">Edit</th>
+            <th class="text-center" scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <!-- *ngFor loop iterates over Student array and fetch the student's data -->
           <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
-          <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">  
+          <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">  
             <td>{{llavero.numero}}</td>
             <td>{{llavero.nombre}}</td>
             <td>{{llavero.material}}</td> 

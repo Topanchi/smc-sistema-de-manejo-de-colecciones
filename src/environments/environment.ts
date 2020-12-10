@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyACNjHJLrc42Uz8hwumPnZMcFKOMvMX-0k",
-    authDomain: "sgc-collector-system.firebaseapp.com",
-    databaseURL: "https://sgc-collector-system.firebaseio.com",
-    projectId: "sgc-collector-system",
-    storageBucket: "sgc-collector-system.appspot.com",
-    messagingSenderId: "293248761698",
-    appId: "1:293248761698:web:67cc74b2eb8b9145a3363b",
-    measurementId: "G-FE6D8ZSDJ2"
+    apiKey: "AIzaSyCE-cvp89KI19MjvsMqgcQok_3nTdRr5Mk",
+    authDomain: "smc-collection-management.firebaseapp.com",
+    projectId: "smc-collection-management",
+    storageBucket: "smc-collection-management.appspot.com",
+    messagingSenderId: "841283229086",
+    appId: "1:841283229086:web:783491271e01d57fbf728f",
+    measurementId: "G-KF2WWB857H"
   }
 };
 
