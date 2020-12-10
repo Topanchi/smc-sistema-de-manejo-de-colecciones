@@ -46,3 +46,8 @@ testem.log
 Thumbs.db
 
 .firebase/hosting.ZGlzdA.cache
+/.firebase
+.firebaserc
+firebase.json
+database.rules.json
+
