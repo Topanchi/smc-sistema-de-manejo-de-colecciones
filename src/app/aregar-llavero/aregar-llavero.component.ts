@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';    // CRUD services API
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'; // Reactive form services
 import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class AregarLlaveroComponent implements OnInit {
   constructor( 
     public crudApi: CrudService,  // CRUD API services
     public fb: FormBuilder,       // Form Builder service for Reactive forms
-    public toastr: ToastrService  // Toastr service for alert message
+    public toastr: ToastrService,  // Toastr service for alert message
+    private router: Router             // Router service to navigate to specific component
   ) { }
 
 
@@ -60,6 +62,6 @@ ResetForm() {
 submitStudentData() {
   this.crudApi.AddStudent(this.llaverosForm.value); // Submit student data using CRUD API
   this.toastr.success('Lavero registrado con éxito!'); // Show success message when data is successfully submited
-  this.ResetForm();  // Reset form when clicked on reset button
+  this.router.navigate(['listar-llaveros']);
  };
 }

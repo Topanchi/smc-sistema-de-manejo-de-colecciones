@@ -39,7 +39,7 @@
             <td>{{llavero.material}}</td> 
             <td class="text-center action-block">
               <!-- routerLink="/edit-student/{{student.$key}}" is refered to { path: 'edit-student/:id', component: EditStudentComponent } in app-routing.moudles.ts -->
-              <i class="far fa-edit" routerLink="/edit-student/{{llavero.$key}}"></i>
+              <i class="far fa-edit" routerLink="/editar-llavero/{{llavero.$key}}"></i> | 
               <i class="far fa-trash-alt" (click)="deleteStudent(llavero)"></i></td>
           </tr>
         </tbody>
