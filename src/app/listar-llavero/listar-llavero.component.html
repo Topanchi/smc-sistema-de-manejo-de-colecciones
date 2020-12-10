@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Llaveros regitrados</h1>
     <!-- It won't show if there is no student data -->
-    <a routerLink="/register-student" class="btn btn-success" *ngIf="hideWhenNoLlavero">
+    <a routerLink="/agregar-llavero" class="btn btn-success" *ngIf="hideWhenNoLlavero">
       <i class="fas fa-plus custom-fa-plus"></i>
       Añadir llavero
     </a>
@@ -24,7 +24,6 @@
       <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
         <thead>
           <tr>
-            <th scope="col">key</th>
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Material</th>
@@ -34,8 +33,7 @@
         <tbody>
           <!-- *ngFor loop iterates over Student array and fetch the student's data -->
           <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
-          <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
-            <th scope="row">{{llavero.$key}}</th>
+          <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">  
             <td>{{llavero.numero}}</td>
             <td>{{llavero.nombre}}</td>
             <td>{{llavero.material}}</td> 
