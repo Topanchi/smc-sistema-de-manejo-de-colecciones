@@ -7,7 +7,7 @@ export interface Llavero {
   nombre: string; 
   material: string;
   numero: number;
-  notas: string;
+  comentarios: string;
   pais: string;
 }
 

@@ -34,7 +34,7 @@ llaveroForm() {
     material: ['', [Validators.required]],
     numero: ['', [Validators.required]],
     pais: [''],
-    notas: ['']
+    comentarios: ['']
   })  
 }
 // Accessing form control using getters
@@ -50,8 +50,8 @@ get numero() {
 get pais() {
   return this.llaverosForm.get('pais');
 }
-get notas() {
-  return this.llaverosForm.get('notas');
+get comentarios() {
+  return this.llaverosForm.get('comentarios');
 }
 
 // Reset student form's values
