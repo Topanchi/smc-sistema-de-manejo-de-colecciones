@@ -23,12 +23,12 @@ export class AregarLlaveroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.crudApi.GetStudentsList();  // Call GetStudentsList() before main form is being called
-    this.studenForm();              // Call student form when component is ready
+    this.crudApi.ObtenerLlaveroList();  // Call GetStudentsList() before main form is being called
+    this.llaveroForm();              // Call student form when component is ready
 
   }
 // Reactive student form
-studenForm() {
+llaveroForm() {
   this.llaverosForm = this.fb.group({
     nombre: ['', [Validators.required]],
     material: ['', [Validators.required]],
@@ -60,7 +60,7 @@ ResetForm() {
 }  
 
 submitStudentData() {
-  this.crudApi.AddStudent(this.llaverosForm.value); // Submit student data using CRUD API
+  this.crudApi.AgregarLlavero(this.llaverosForm.value); // Submit student data using CRUD API
   this.toastr.success('Lavero registrado con éxito!'); // Show success message when data is successfully submited
   this.router.navigate(['listar-llaveros']);
  };

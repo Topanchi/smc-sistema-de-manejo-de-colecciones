@@ -21,8 +21,8 @@ export class CrudService {
   // Inject AngularFireDatabase Dependency in Constructor
   constructor(private db: AngularFireDatabase) { }
 
-  // Create Student
-  AddStudent(llavero: Llavero) {
+  // Create Keys
+  AgregarLlavero(llavero: Llavero) {
     this.llaverosRef.push({
       nombre: llavero.nombre,
       material: llavero.material,
@@ -32,19 +32,19 @@ export class CrudService {
     })
   }
 
-  // Fetch Single Student Object
-  GetStudent(id: string) {
+  // Fetch Single Key Object
+  ObtenerLlavero(id: string) {
     this.llaveroRef = this.db.object('llaveros/' + id);
     return this.llaveroRef;
   }
-  // Fetch Students List
-  GetStudentsList() {
+  // Fetch Keys List
+  ObtenerLlaveroList() {
     this.llaverosRef = this.db.list('llaveros');
     return this.llaverosRef;
   } 
 
-  // Update Student Object
-  UpdateStudent(llavero: Llavero) {
+  // Update Key Object
+  EditarLavero(llavero: Llavero) {
     this.llaveroRef.update({
       nombre: llavero.nombre,
       material: llavero.material,
@@ -53,8 +53,8 @@ export class CrudService {
       comentarios: llavero.notas
     })
   }  
-  // Delete Student Object
-  DeleteStudent(id: string) { 
+  // Delete Key Object
+  EliminarLlavero(id: string) { 
     this.llaveroRef = this.db.object('llaveros/'+id);
     this.llaveroRef.remove();
   }
