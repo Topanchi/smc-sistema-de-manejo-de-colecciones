@@ -25,9 +25,7 @@ export class EditarLlaveroComponent implements OnInit {
   ngOnInit() {
     //this.updateLlaveroData();                              // Call updateLlaveroData() as soon as the component is ready 
     const id = this.actRoute.snapshot.paramMap.get('id');  // Getting current component's id or information using ActivatedRoute service
-    console.log("id: ", id);
     this.crudApi.ObtenerLlavero(id).valueChanges().subscribe(data => {
-      console.log("data from API: ", data);
       this.updateLlaveroData(data);
       this.editForm.setValue(data);                     // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form
     })
