@@ -23,10 +23,12 @@ export class EditarLlaveroComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    this.updateLlaveroData();   // Call updateStudentData() as soon as the component is ready 
+    this.updateLlaveroData();                              // Call updateLlaveroData() as soon as the component is ready 
     const id = this.actRoute.snapshot.paramMap.get('id');  // Getting current component's id or information using ActivatedRoute service
+    console.log("id: ", id);
     this.crudApi.ObtenerLlavero(id).valueChanges().subscribe(data => {
-      this.editForm.setValue(data)  // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form 
+      console.log("data from API: ", data);
+      this.editForm.setValue(data);                     // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form
     })
   }
 
@@ -47,7 +49,6 @@ export class EditarLlaveroComponent implements OnInit {
     return this.editForm.get('notas');
   }
 
-
   // Contains Reactive Form logic
   updateLlaveroData() {
     this.editForm = this.fb.group({
@@ -64,8 +65,8 @@ export class EditarLlaveroComponent implements OnInit {
   }
   // Below methods fire when somebody click on submit button
   updateForm(){
-    this.crudApi.EditarLavero(this.editForm.value);       // Update student data using CRUD API
-    this.toastr.success(' Registro editado de forma exitosa');   // Show succes message when data is successfully submited
-    this.router.navigate(['listar-llaveros']);               // Navigate to student's list page when student data is updated
+    this.crudApi.EditarLavero(this.editForm.value);             // Update key data using CRUD API
+    this.toastr.success('Registro editado de forma exitosa');   // Show succes message when data is successfully submited
+    this.router.navigate(['listar-llaveros']);                  // Navigate to key's list page when student data is updated
   }
 }
