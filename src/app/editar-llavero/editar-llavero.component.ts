@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CrudService } from '../services/crud.service';
+import { CrudService, Llavero } from '../services/crud.service';
 import { ActivatedRoute, Router } from "@angular/router"; // ActivatedRoue is used to get the current associated components information.
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToastrService } from 'ngx-toastr';
@@ -23,11 +23,12 @@ export class EditarLlaveroComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    this.updateLlaveroData();                              // Call updateLlaveroData() as soon as the component is ready 
+    //this.updateLlaveroData();                              // Call updateLlaveroData() as soon as the component is ready 
     const id = this.actRoute.snapshot.paramMap.get('id');  // Getting current component's id or information using ActivatedRoute service
     console.log("id: ", id);
     this.crudApi.ObtenerLlavero(id).valueChanges().subscribe(data => {
       console.log("data from API: ", data);
+      this.updateLlaveroData(data);
       this.editForm.setValue(data);                     // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form
     })
   }
@@ -45,18 +46,18 @@ export class EditarLlaveroComponent implements OnInit {
   get pais() {
     return this.editForm.get('pais');
   }
-  get notas() {
-    return this.editForm.get('notas');
+  get comentarios() {
+    return this.editForm.get('comentarios');
   }
 
   // Contains Reactive Form logic
-  updateLlaveroData() {
+  updateLlaveroData(data: Llavero) {
     this.editForm = this.fb.group({
-      nombre: ['', [Validators.required]],
-      material: ['', [Validators.required]],
-      numero: ['', [Validators.required]],
-      pais: [''],
-      notas: ['']
+      nombre: [data ? data.nombre : '', [Validators.required]],
+      material: [data ? data.material : '', [Validators.required]],
+      numero: [data ? data.numero : '', [Validators.required]],
+      pais: [data ? data.pais : ''],
+      comentarios: [data ? data.comentarios : '']
     })
   }
   // Go back to previous component

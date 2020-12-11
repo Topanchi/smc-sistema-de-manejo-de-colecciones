@@ -6,7 +6,7 @@ export interface Llavero {
   nombre: string; 
   material: string;
   numero: number;
-  notas: string;
+  comentarios: string;
   pais: string;
 }
 
@@ -28,7 +28,7 @@ export class CrudService {
       material: llavero.material,
       numero: llavero.numero,
       pais: llavero.pais,
-      comentarios: llavero.notas
+      comentarios: llavero.comentarios
     })
   }
 
@@ -50,7 +50,7 @@ export class CrudService {
       material: llavero.material,
       numero: llavero.numero,
       pais: llavero.pais,
-      comentarios: llavero.notas
+      comentarios: llavero.comentarios
     })
   }  
   // Delete Key Object
