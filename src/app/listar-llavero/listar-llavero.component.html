@@ -2,7 +2,7 @@
     <h1 class="h2">Llaveros regitrados</h1>
     <!-- It won't show if there is no student data -->
     <a routerLink="/agregar-llavero" class="btn btn-success" *ngIf="hideWhenNoLlavero">
-      <i class="fas fa-plus custom-fa-plus"></i>
+      <em class="fas fa-plus custom-fa-plus"></em>
       Añadir llavero
     </a>
   </div>
@@ -14,7 +14,7 @@
       
       <p class="nodata-msg">No existen llaveros registrados aún!</p>
       <a routerLink="/agregar-llavero" class="btn btn-success">
-        <i class="fas fa-plus custom-fa-plus"></i>
+        <em class="fas fa-plus custom-fa-plus"></em>
         Añadir llavero
       </a>
     </div>
@@ -38,8 +38,9 @@
             <td>{{llavero.nombre}}</td>
             <td>{{llavero.material}}</td> 
             <td class="text-center action-block">
-              <i class="far fa-edit" routerLink="/editar-llavero/{{llavero.$key}}"></i> | 
-              <i class="far fa-trash-alt" (click)="deleteLlavero(llavero)"></i></td>
+              <em class="far fa-eye" routerLink="/editar-llavero/{{llavero.$key}}"></em> |
+              <em class="far fa-edit" routerLink="/editar-llavero/{{llavero.$key}}"></em> | 
+              <em class="far fa-trash-alt" (click)="deleteLlavero(llavero)"></em>
           </tr>
         </tbody>
       </table>
