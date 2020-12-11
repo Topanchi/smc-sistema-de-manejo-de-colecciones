@@ -16,13 +16,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
+import { VerLlaveroComponent } from './ver-llavero/ver-llavero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AregarLlaveroComponent,
     EditarLlaveroComponent,
-    ListarLlaveroComponent
+    ListarLlaveroComponent,
+    VerLlaveroComponent
   ],
   imports: [
     BrowserModule,
