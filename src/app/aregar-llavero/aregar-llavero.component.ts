@@ -3,6 +3,7 @@ import { CrudService } from '../services/crud.service';    // CRUD services API
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'; // Reactive form services
 import { ToastrService } from 'ngx-toastr'; // Alert message using NGX toastr
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 @Component({
@@ -14,11 +15,14 @@ export class AregarLlaveroComponent implements OnInit {
 
   public llaverosForm: FormGroup;  // Define FormGroup to student's form
 
+  path: string;
+
   constructor( 
     public crudApi: CrudService,  // CRUD API services
     public fb: FormBuilder,       // Form Builder service for Reactive forms
     public toastr: ToastrService,  // Toastr service for alert message
-    private router: Router             // Router service to navigate to specific component
+    private router: Router,             // Router service to navigate to specific component
+    private afs: AngularFireStorage
   ) { }
 
 
@@ -27,41 +31,53 @@ export class AregarLlaveroComponent implements OnInit {
     this.llaveroForm();              // Call student form when component is ready
 
   }
-// Reactive student form
-llaveroForm() {
-  this.llaverosForm = this.fb.group({
-    nombre: ['', [Validators.required]],
-    material: ['', [Validators.required]],
-    numero: ['', [Validators.required]],
-    pais: [''],
-    comentarios: ['']
-  })  
-}
-// Accessing form control using getters
-get nombre() {
-  return this.llaverosForm.get('nombre');
-}
-get material() {
-  return this.llaverosForm.get('material');
-}  
-get numero() {
-  return this.llaverosForm.get('numero');
-}
-get pais() {
-  return this.llaverosForm.get('pais');
-}
-get comentarios() {
-  return this.llaverosForm.get('comentarios');
-}
 
-// Reset student form's values
-ResetForm() {
-  this.llaverosForm.reset();
-}  
+  // Reactive student form
+  llaveroForm() {
+    this.llaverosForm = this.fb.group({
+      nombre: ['', [Validators.required]],
+      material: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      pais: [''],
+      comentarios: ['']
+    })  
+  }
+  // Accessing form control using getters
+  get nombre() {
+    return this.llaverosForm.get('nombre');
+  }
+  get material() {
+    return this.llaverosForm.get('material');
+  }  
+  get numero() {
+    return this.llaverosForm.get('numero');
+  }
+  get pais() {
+    return this.llaverosForm.get('pais');
+  }
+  get comentarios() {
+    return this.llaverosForm.get('comentarios');
+  }
 
-submitStudentData() {
-  this.crudApi.AgregarLlavero(this.llaverosForm.value); // Submit student data using CRUD API
-  this.toastr.success('Lavero registrado con éxito!'); // Show success message when data is successfully submited
-  this.router.navigate(['listar-llaveros']);
- };
+  // Reset student form's values
+  ResetForm() {
+    this.llaverosForm.reset();
+  }  
+
+  upload($event){
+    this.path = $event.target.files[0]
+  }
+
+  private uploadImage(){
+    console.log("path: ", this.path);
+
+    this.afs.upload("/llaveros-img/img"+Math.random()+this.path, this.path);
+  }
+
+  submitStudentData() {
+    this.crudApi.AgregarLlavero(this.llaverosForm.value); // Submit student data using CRUD API
+    this.uploadImage();
+    this.toastr.success('Lavero registrado con éxito!'); // Show success message when data is successfully submited
+    this.router.navigate(['listar-llaveros']);
+  }
 }

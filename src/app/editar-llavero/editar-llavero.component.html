@@ -49,6 +49,12 @@
                                 <input type="text" formControlName="comentarios" class="form-control" >
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                              <label>Cargar imagen</label><br>
+                              <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+                            </div>
+                          </div>
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-success btn-block" [disabled]="!editForm.valid">
                                 Actualizar
