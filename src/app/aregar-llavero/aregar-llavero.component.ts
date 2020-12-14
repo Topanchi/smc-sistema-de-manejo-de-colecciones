@@ -71,7 +71,9 @@ export class AregarLlaveroComponent implements OnInit {
   private uploadImage(){
     console.log("path: ", this.path);
 
-    this.afs.upload("/llaveros-img/img"+Math.random()+this.path, this.path);
+    let test = this.afs.upload("/llaveros-img/img"+Math.random()+this.path, this.path);
+
+    console.log("test: ", test);
   }
 
   submitStudentData() {

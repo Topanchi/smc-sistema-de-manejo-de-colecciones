@@ -1,50 +1,50 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Llaveros regitrados</h1>
-    <!-- It won't show if there is no student data -->
-    <a routerLink="/agregar-llavero" class="btn btn-success" *ngIf="hideWhenNoLlavero">
+  <h1 class="h2">Llaveros regitrados</h1>
+  <!-- It won't show if there is no student data -->
+  <a routerLink="/agregar-llavero" class="btn btn-success" *ngIf="hideWhenNoLlavero">
+    <em class="fas fa-plus custom-fa-plus"></em>
+    Añadir
+  </a>
+</div>
+  
+<div class="pricing-header mx-auto">
+
+  <!-- No data shows when their is no student data available -->
+  <div class="no-data text-center" *ngIf="noData">
+    
+    <p class="nodata-msg">No existen llaveros registrados aún!</p>
+    <a routerLink="/agregar-llavero" class="btn btn-success">
       <em class="fas fa-plus custom-fa-plus"></em>
-      Añadir
+      Añadir llavero
     </a>
   </div>
-  
-  <div class="pricing-header mx-auto">
-  
-    <!-- No data shows when their is no student data available -->
-    <div class="no-data text-center" *ngIf="noData">
-      
-      <p class="nodata-msg">No existen llaveros registrados aún!</p>
-      <a routerLink="/agregar-llavero" class="btn btn-success">
-        <em class="fas fa-plus custom-fa-plus"></em>
-        Añadir llavero
-      </a>
-    </div>
-  
-    <!-- Showing students data -->
-    <div class="table-responsive" *ngIf="hideWhenNoLlavero">
-      <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Material</th>
-            <th class="text-center" scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- *ngFor loop iterates over Student array and fetch the student's data -->
-          <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
-          <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">  
-            <td>{{llavero.numero}}</td>
-            <td>{{llavero.nombre}}</td>
-            <td>{{llavero.material}}</td> 
-            <td class="text-center action-block">
-              <em class="far fa-eye" routerLink="/ver-llavero/{{llavero.$key}}"></em> |
-              <em class="far fa-edit" routerLink="/editar-llavero/{{llavero.$key}}"></em> | 
-              <em class="far fa-trash-alt" (click)="deleteLlavero(llavero)"></em>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- Pagination -->
-    <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+
+  <!-- Showing students data -->
+  <div class="table-responsive" *ngIf="hideWhenNoLlavero">
+    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Material</th>
+          <th class="text-center" scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- *ngFor loop iterates over Student array and fetch the student's data -->
+        <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
+        <tr *ngFor="let llavero of Llavero | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">  
+          <td>{{llavero.numero}}</td>
+          <td>{{llavero.nombre}}</td>
+          <td>{{llavero.material}}</td> 
+          <td class="text-center action-block">
+            <em class="far fa-eye" routerLink="/ver-llavero/{{llavero.$key}}"></em> |
+            <em class="far fa-edit" routerLink="/editar-llavero/{{llavero.$key}}"></em> | 
+            <em class="far fa-trash-alt" (click)="deleteLlavero(llavero)"></em>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <!-- Pagination -->
+  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+</div>
