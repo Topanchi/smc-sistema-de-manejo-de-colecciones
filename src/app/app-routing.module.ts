@@ -5,12 +5,14 @@ import { AregarLlaveroComponent } from './aregar-llavero/aregar-llavero.componen
 import { EditarLlaveroComponent } from './editar-llavero/editar-llavero.component';
 import { ListarLlaveroComponent } from './listar-llavero/listar-llavero.component';
 import { VerLlaveroComponent } from './ver-llavero/ver-llavero.component';
+import { GaleriaLlaveroComponent } from './galeria-llavero/galeria-llavero.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/agregar-llavero', pathMatch: 'full' },
   { path: 'agregar-llavero', component: AregarLlaveroComponent },
   { path: 'listar-llaveros', component: ListarLlaveroComponent },
+  { path: 'galeria-llavero', component: GaleriaLlaveroComponent },
   { path: 'editar-llavero/:id', component: EditarLlaveroComponent },
   { path: 'ver-llavero/:id', component: VerLlaveroComponent }
 ];

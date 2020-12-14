@@ -4,6 +4,7 @@ import { CrudService, Llavero } from '../services/crud.service';
 import { ActivatedRoute, Router } from "@angular/router"; // ActivatedRoue is used to get the current associated components information.
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToastrService } from 'ngx-toastr';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-editar-llavero',
@@ -12,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditarLlaveroComponent implements OnInit {
   editForm: FormGroup;  // Define FormGroup to student's edit form
+
+  path: string;
   
   constructor(
     private crudApi: CrudService,       // Inject CRUD API in constructor
@@ -19,7 +22,8 @@ export class EditarLlaveroComponent implements OnInit {
     private location: Location,         // Location service to go back to previous component
     private actRoute: ActivatedRoute,   // Activated route to get the current component's inforamation
     private router: Router,             // Router service to navigate to specific component
-    private toastr: ToastrService       // Toastr service for alert message
+    private toastr: ToastrService,       // Toastr service for alert message
+    private afs: AngularFireStorage
   ){ }
 
   ngOnInit() {
@@ -62,9 +66,20 @@ export class EditarLlaveroComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  upload($event){
+    this.path = $event.target.files[0]
+  }
+
+  private uploadImage(){
+    console.log("path: ", this.path);
+
+    this.afs.upload("/llaveros-img/img"+Math.random()+this.path, this.path);
+  }
   // Below methods fire when somebody click on submit button
   updateForm(){
     this.crudApi.EditarLavero(this.editForm.value);             // Update key data using CRUD API
+    this.uploadImage();
     this.toastr.success('Registro editado de forma exitosa');   // Show succes message when data is successfully submited
     this.router.navigate(['listar-llaveros']);                  // Navigate to key's list page when student data is updated
   }
