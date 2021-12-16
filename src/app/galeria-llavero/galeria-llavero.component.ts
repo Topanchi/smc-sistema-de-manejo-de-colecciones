@@ -9,8 +9,11 @@ import { CrudService } from '../services/crud.service';
   styleUrls: ['./galeria-llavero.component.css']
 })
 export class GaleriaLlaveroComponent implements OnInit {
+  public getAllLlaveros: any;
+  p: number = 1;  
   Llavero: Llavero[];
   Imagenes: any[];
+  AltImg: string[]
   urlImage: any;
 
   constructor(private crudApi: CrudService,) { }
@@ -23,6 +26,7 @@ export class GaleriaLlaveroComponent implements OnInit {
     this.crudApi.ObtenerLlaveroList().snapshotChanges().subscribe(data => {
       console.log(data);
       this.Llavero = [];
+      this.getAllLlaveros = data;
       data.forEach(item => {
         //console.log(item.payload.toJSON());
         let a = item.payload.toJSON(); 
@@ -30,16 +34,23 @@ export class GaleriaLlaveroComponent implements OnInit {
         this.Llavero.push(a as Llavero);
       })
       console.log(this.Llavero);
+      this.altImg(this.Llavero);
       //this.getImg(this.Llavero);
     });
 
     
   }
+  private altImg(Llavero: Llavero[]) {
+    Llavero.forEach(element => {
+      this.Imagenes = element.img
+    }); 
+  }
 
   private getImg(Llavero: Llavero[]) {
-    Llavero.forEach(element => {
-      this.urlImage = element.img
+    Llavero.forEach((element,i) => {
+      this.AltImg.push('llavero'+i);
     }); 
+    console.log(this.AltImg);
   }
 
 }

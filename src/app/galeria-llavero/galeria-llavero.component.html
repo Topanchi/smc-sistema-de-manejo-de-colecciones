@@ -2,29 +2,38 @@
     <h1 class="h2">Llaveros regitrados - Fotos</h1>
     <!-- It won't show if there is no student data -->
 </div>
-<div *ngFor="let llavero of Llavero"> -->
-  <div class="album py-5 bg-light">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <div class="img">
-            <img class="card-img-top" src="{{llavero.img}}" alt="LLAVERO01" width="50" height="350"><!-- "{{this.urlImage}}" -->
-          </div>
-          <div class="card-body">
-            <p class="card-text">--Data.--</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/ver-llavero/{{llavero.$key}}">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/editar-llavero/{{llavero.$key}}">Edit</button>
-              </div>
+
+
+
+<div class="album py-5 bg-light">
+  <div class="row">
+    <div *ngFor="let item of Llavero | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;"  class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <div class="img">
+          <img class="card-img-top" src="{{item.img}}" alt="LLAVERO01" width="50" height="350">
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            
+          </p>
+          <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.nombre}}</h5>
+          <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.material}}</p>
+          <p><strong>Número:</strong> {{item.numero}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/ver-llavero/{{item.$key}}">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/editar-llavero/{{item.$key}}">Edit</button>
             </div>
           </div>
         </div>
       </div>
-  
     </div>
+
   </div>
 </div>
+
+<pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+
 
 
 
