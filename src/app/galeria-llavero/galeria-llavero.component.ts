@@ -10,6 +10,8 @@ import { CrudService } from '../services/crud.service';
 })
 export class GaleriaLlaveroComponent implements OnInit {
   Llavero: Llavero[];
+  Imagenes: any[];
+  urlImage: any;
 
   constructor(private crudApi: CrudService,) { }
 
@@ -18,15 +20,26 @@ export class GaleriaLlaveroComponent implements OnInit {
   }
 
   private getData() {
-    let s = this.crudApi.ObtenerLlaveroList(); 
-    s.snapshotChanges().subscribe(data => { // Using snapshotChanges() method to retrieve list of data along with metadata($key)
+    this.crudApi.ObtenerLlaveroList().snapshotChanges().subscribe(data => {
+      console.log(data);
       this.Llavero = [];
       data.forEach(item => {
+        //console.log(item.payload.toJSON());
         let a = item.payload.toJSON(); 
         a['$key'] = item.key;
         this.Llavero.push(a as Llavero);
       })
-    })
+      console.log(this.Llavero);
+      //this.getImg(this.Llavero);
+    });
+
+    
+  }
+
+  private getImg(Llavero: Llavero[]) {
+    Llavero.forEach(element => {
+      this.urlImage = element.img
+    }); 
   }
 
 }
