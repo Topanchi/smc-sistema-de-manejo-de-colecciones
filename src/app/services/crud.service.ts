@@ -8,6 +8,7 @@ export interface Llavero {
   numero: number;
   comentarios: string;
   pais: string;
+  img: any;
 }
 
 @Injectable({
