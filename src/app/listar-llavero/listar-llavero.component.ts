@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';  // CRUD API service class
 import { ToastrService } from 'ngx-toastr';      // Alert message using NGX toastr
-
-export interface Llavero { 
-  $key: string;
-  nombre: string; 
-  material: string;
-  numero: number;
-  comentarios: string;
-  pais: string;
-}
+import { Llavero } from '../models/llavero';
 
 @Component({
   selector: 'app-listar-llavero',

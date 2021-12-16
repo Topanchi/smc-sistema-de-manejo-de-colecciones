@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CrudService, Llavero } from '../services/crud.service';
+import { CrudService } from '../services/crud.service';
 import { ActivatedRoute, Router } from "@angular/router"; // ActivatedRoue is used to get the current associated components information.
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Llavero } from '../models/llavero';
 
 @Component({
   selector: 'app-editar-llavero',
