@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CrudService, Llavero } from '../services/crud.service';
+import { CrudService } from '../services/crud.service';
 import { ActivatedRoute, Router } from "@angular/router"; // ActivatedRoue is used to get the current associated components information.
 import { Location } from '@angular/common';  // Location service is used to go back to previous component
 import { ToastrService } from 'ngx-toastr';
+import { Llavero } from '../models/llavero';
 
 @Component({
   selector: 'app-ver-llavero',
@@ -13,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class VerLlaveroComponent implements OnInit {
 
   viewForm: FormGroup;
+  urlImage: string;
 
   constructor(
     private crudApi: CrudService,       // Inject CRUD API in constructor
@@ -26,6 +28,8 @@ export class VerLlaveroComponent implements OnInit {
   ngOnInit(): void {
     const id = this.actRoute.snapshot.paramMap.get('id');  // Getting current component's id or information using ActivatedRoute service
     this.crudApi.ObtenerLlavero(id).valueChanges().subscribe(data => {
+      console.log(data)
+      this.urlImage = data.img;
       this.viewLlaveroData(data);
       this.viewForm.setValue(data);                     // Using SetValue() method, It's a ReactiveForm's API to store intial value of reactive form
     })
@@ -47,6 +51,9 @@ export class VerLlaveroComponent implements OnInit {
   get comentarios() {
     return this.viewForm.get('comentarios');
   }
+  get image() {
+    return this.viewForm.get('image');
+  }
 
   // Contains Reactive Form logic
   viewLlaveroData(data: Llavero){
@@ -55,7 +62,8 @@ export class VerLlaveroComponent implements OnInit {
       material: [data ? data.material : '', [Validators.required]],
       numero: [data ? data.numero : '', [Validators.required]],
       pais: [data ? data.pais : ''],
-      comentarios: [data ? data.comentarios : '']
+      comentarios: [data ? data.comentarios : ''],
+      image: [data ? data.img : '']
     })
   }
 
